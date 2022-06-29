@@ -1,12 +1,15 @@
 const express = require("express")
+const argv = require("minimist")(process.argv.slice(2))
 const bodyParser = require("body-parser")
 const { SES } = require("aws-sdk")
+
+const PORT = argv.port || 8080
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.listen(8080, () => {
+app.listen(PORT, () => {
   console.log("server running")
 })
 
