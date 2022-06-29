@@ -6,8 +6,12 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.listen(6969, () => {
+app.listen(8080, () => {
   console.log("server running")
+})
+
+app.get("/uptime", (_req, res) => {
+  res.json(`Server Up ${new Date()}`)
 })
 
 app.post("/get-ses-quota", (req, res) => {
