@@ -17,7 +17,7 @@ app.post("/get-ses-quota", (req, res) => {
   const { key, secret, region } = req.body
 
   if (!key || !secret || !region)
-    res.json("Please provide key, secret and region!")
+    return res.json("Please provide key, secret and region!")
 
   const CONFIG = {
     accessKeyId: `${key}`,
@@ -28,15 +28,15 @@ app.post("/get-ses-quota", (req, res) => {
   try {
     const ses = new SES(CONFIG)
     ses.getSendQuota((err, data) => {
-      if (err) res.json(`Error: ${err.message}`)
+      if (err) return res.json(`Error: ${err.message}`)
 
-      res.json(data)
+      return res.json(data)
     })
   } catch (err) {
-    res.json(`Error: ${err.message}`)
+    return res.json(`Error: ${err.message}`)
   }
 })
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log("server running")
 })
