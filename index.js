@@ -9,10 +9,6 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.listen(PORT, () => {
-  console.log("server running")
-})
-
 app.get("/uptime", (_req, res) => {
   res.json(`Server Up ${new Date()}`)
 })
@@ -39,4 +35,8 @@ app.post("/get-ses-quota", (req, res) => {
   } catch (err) {
     res.json(`Error: ${err.message}`)
   }
+})
+
+app.listen(PORT, () => {
+  console.log("server running")
 })
